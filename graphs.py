@@ -62,7 +62,7 @@ def create_graph(logit_func, settings):
                             name="bbox_loss")
         
         # DIGITS LOSS
-        digits_loss = multi_digit_loss(digit_logits, Y,
+        digits_loss = multi_digit_loss(logits_list=digit_logits, Y=Y,
                                        max_digits=5,
                                        name="digit_loss")
         
@@ -151,7 +151,7 @@ def model_a(x, is_training, global_step, settings=None, verbose=True):
                         name="branch_{}".format(i + 1))
         print_tensor_shape(d[i], verbose=verbose)
     
-    digits = tf.pack(d, axis=0, name="digit_logits")
+    digits = tf.stack(d, axis=0, name="digit_logits")
     print_tensor_shape(digits, verbose=verbose)
     
     # --------------------------------------------------------------------------

@@ -17,7 +17,7 @@ def leaky_relu(x, rate=0.01, name="leaky_relu"):
         name: name for this op
     """
     with tf.name_scope(name) as scope:
-        leak_rate = tf.mul(x, rate, name="leak_rate")
+        leak_rate = tf.multiply(x, rate, name="leak_rate")
         activation = tf.maximum(x, leak_rate, name=scope)
         # activation_summary(activation)
         # tf.histogram_summary(scope + '/activation', activation)

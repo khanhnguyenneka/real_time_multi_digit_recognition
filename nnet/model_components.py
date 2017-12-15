@@ -26,15 +26,15 @@ def multi_digit_loss(logits_list, Y, max_digits=5, name="loss"):
         # LOSSES FOR EACH DIGIT BRANCH
         losses = [None] * (max_digits)
         losses[0] = tf.nn.sparse_softmax_cross_entropy_with_logits(
-            logits_list[0], Y[:, 0])
+            logits=logits_list[0], labels=Y[:, 0])
         losses[1] = tf.nn.sparse_softmax_cross_entropy_with_logits(
-            logits_list[1], Y[:, 1])
+            logits=logits_list[1], labels=Y[:, 1])
         losses[2] = tf.nn.sparse_softmax_cross_entropy_with_logits(
-            logits_list[2], Y[:, 2])
+            logits=logits_list[2], labels=Y[:, 2])
         losses[3] = tf.nn.sparse_softmax_cross_entropy_with_logits(
-            logits_list[3], Y[:, 3])
+            logits=logits_list[3], labels=Y[:, 3])
         losses[4] = tf.nn.sparse_softmax_cross_entropy_with_logits(
-            logits_list[4], Y[:, 4])
+            logits=logits_list[4], labels=Y[:, 4])
         # AVERAGE LOSS
         loss = sum(losses) / float(max_digits)
         loss = tf.reduce_mean(loss, name=scope)
